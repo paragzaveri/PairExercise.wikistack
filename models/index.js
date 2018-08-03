@@ -7,21 +7,29 @@ logging: false
 const User = db.define('user', {
   name:{
     type: Sequelize.STRING,
+    allowNull: false
   },
   email:{
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   }
 });
 
 const Page = db.define('page', {
   title:{
     type: Sequelize.STRING,
+    allowNull: false,
   },
   slug:{
     type: Sequelize.STRING,
+    allowNull: false,
   },
   content:{
     type: Sequelize.TEXT,
+    allowNull: false,
   },
   status:{
     type: Sequelize.ENUM('open', 'closed')
@@ -30,6 +38,4 @@ const Page = db.define('page', {
 
 // db.sync();
 
-module.exports = {
-  db
-}
+module.exports = {db, Page, User};
