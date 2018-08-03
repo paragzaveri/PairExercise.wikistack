@@ -5,12 +5,19 @@ const app = express();
 const html = require('./views/main');
 const {db} = require('./models/index');
 
+
+
+
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
+
 const models = require('./models');
 
 
 app.use(express.static(__dirname + "/public"));
-
 app.use(bodyParser.urlencoded({extended: true}));
+app.use('/wiki', wikiRouter);
+
 
 app.get ('/', (req, res) => {
   res.send(html());
