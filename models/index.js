@@ -21,21 +21,23 @@ const User = db.define('user', {
 const Page = db.define('page', {
   title:{
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   slug:{
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   content:{
     type: Sequelize.TEXT,
-    allowNull: false,
+    allowNull: false
   },
   status:{
     type: Sequelize.ENUM('open', 'closed')
   }
 });
+// async function sync()  {
+//   await db.sync({force: true});
+// }
 
-// db.sync();
-
+// sync();
 module.exports = {db, Page, User};
