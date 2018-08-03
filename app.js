@@ -5,6 +5,8 @@ const app = express();
 const html = require('./views/main');
 const {db} = require('./models/index');
 
+const models = require('./models');
+
 
 app.use(express.static(__dirname + "/public"));
 
@@ -18,12 +20,26 @@ db.authenticate().
 then(() => {
   console.log('connected to the database');
 })
-
 const PORT = 1337;
 
-app.listen(PORT, () => {
-  console.log(`App listening in port ${PORT}`);
-})
+const init = async () => {
+  // await models.User.sync()
+  // await models.Page.sync()
+ await models.db.sync({force: true})
+
+  app.listen(PORT, () => {
+    console.log(`App listening in port ${PORT}`);
+  });
+}
+
+// models.db.sync({force: true})
+
+
+init();
+
+
+
+
 
 
 
