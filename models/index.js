@@ -1,45 +1,43 @@
 const Sequelize = require('sequelize');
 const db = new Sequelize('postgres://localhost:5432/wikistack', {
-logging: false
+  logging: false,
 });
 
-
 const User = db.define('user', {
-  name:{
+  name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
-  email:{
+  email: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-
-      isEmail: true
-    }
-  }
+      isEmail: true,
+    },
+  },
 });
 
 const Page = db.define('page', {
-  title:{
+  title: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
-  slug:{
+  slug: {
     required: false,
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: true,
   },
-  content:{
+  content: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
   },
-  status:{
-    type: Sequelize.ENUM('open', 'closed')
-  }
+  status: {
+    type: Sequelize.ENUM('open', 'closed'),
+  },
 });
 // async function sync()  {
 //   await db.sync({force: true});
 // }
 
 // sync();
-module.exports = {db, Page, User};
+module.exports = { db, Page, User };
